@@ -4,279 +4,334 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Upload Your Files</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    /* ── PASTE YOUR SCRIPT URL HERE ─────────────────────────── */
-    /* Find: YOUR_SCRIPT_URL  Replace with your deployed URL    */
-    /* ─────────────────────────────────────────────────────── */
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --cream:   #faf8f4;
-      --ink:     #1a1814;
-      --mid:     #6b6760;
-      --accent:  #c9783c;
-      --border:  #e2ddd6;
-      --success: #3a7d5a;
-      --error:   #c0392b;
-      --shadow:  0 4px 24px rgba(26,24,20,0.08);
+      --bg:       #0d0f12;
+      --surface:  #141720;
+      --surface2: #1c2030;
+      --border:   #252a3a;
+      --border2:  #2e3550;
+      --text:     #e8eaf0;
+      --muted:    #6b7494;
+      --accent:   #4f7dff;
+      --accent2:  #7b5fff;
+      --success:  #22c97a;
+      --error:    #ff5c6a;
     }
 
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--cream);
-      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
     }
 
     body::before {
       content: '';
       position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 60% 40% at 80% 10%, rgba(201,120,60,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 60% at 10% 90%, rgba(201,120,60,0.05) 0%, transparent 70%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(79,125,255,0.08) 0%, transparent 70%);
+      top: -100px; right: -100px;
       pointer-events: none;
+      border-radius: 50%;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(123,95,255,0.06) 0%, transparent 70%);
+      bottom: -50px; left: -50px;
+      pointer-events: none;
+      border-radius: 50%;
     }
 
     .card {
-      background: #fff;
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--shadow);
+      border-radius: 20px;
       width: 100%;
-      max-width: 520px;
-      padding: 3rem 3rem 2.5rem;
+      max-width: 500px;
+      padding: 2.75rem 2.75rem 2.25rem;
       position: relative;
       animation: rise 0.5s cubic-bezier(.22,.68,0,1.2) both;
+      box-shadow:
+        0 0 0 1px rgba(79,125,255,0.05),
+        0 24px 48px rgba(0,0,0,0.4),
+        0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(79,125,255,0.4), rgba(123,95,255,0.4), transparent);
+      border-radius: 99px;
     }
 
     @keyframes rise {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    .logo-area {
-      margin-bottom: 2rem;
+    .header { margin-bottom: 2rem; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(79,125,255,0.1);
+      border: 1px solid rgba(79,125,255,0.2);
+      border-radius: 99px;
+      padding: 4px 12px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
     }
 
-    .logo-dot {
-      width: 10px; height: 10px;
+    .badge::before {
+      content: '';
+      width: 6px; height: 6px;
       background: var(--accent);
       border-radius: 50%;
-      margin-bottom: 1rem;
+      box-shadow: 0 0 6px var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
     h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: 2rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 700;
       line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--ink);
+      letter-spacing: -0.03em;
+      color: var(--text);
       margin-bottom: 0.4rem;
     }
 
-    h1 em {
-      font-style: italic;
-      color: var(--accent);
+    h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .subtitle {
-      font-size: 0.9rem;
-      color: var(--mid);
+      font-size: 0.88rem;
+      color: var(--muted);
       font-weight: 300;
-      margin-bottom: 2rem;
+      line-height: 1.6;
     }
 
-    .field {
-      margin-bottom: 1.25rem;
-    }
+    .field { margin-bottom: 1.1rem; }
 
     label {
       display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.06em;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
       text-transform: uppercase;
-      color: var(--mid);
-      margin-bottom: 0.45rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
     }
 
     input[type="text"],
     input[type="email"] {
       width: 100%;
-      padding: 0.75rem 1rem;
+      padding: 0.7rem 1rem;
       border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      color: var(--ink);
-      background: var(--cream);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      color: var(--text);
+      background: var(--surface2);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
       outline: none;
     }
 
     input[type="text"]:focus,
     input[type="email"]:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(201,120,60,0.12);
-      background: #fff;
+      box-shadow: 0 0 0 3px rgba(79,125,255,0.12);
+      background: #1e2438;
     }
 
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder { color: #3a4060; }
+
     .drop-zone {
-      border: 2px dashed var(--border);
-      border-radius: 10px;
-      padding: 2rem 1.5rem;
+      border: 1.5px dashed var(--border2);
+      border-radius: 12px;
+      padding: 1.75rem 1.5rem;
       text-align: center;
       cursor: pointer;
-      transition: border-color 0.2s, background 0.2s;
-      background: var(--cream);
-      margin-bottom: 1.25rem;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+      background: var(--surface2);
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .drop-zone::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(79,125,255,0.05), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
     }
 
     .drop-zone:hover,
     .drop-zone.drag-over {
       border-color: var(--accent);
-      background: rgba(201,120,60,0.04);
+      background: #181e2e;
+      box-shadow: 0 0 20px rgba(79,125,255,0.08);
     }
 
-    .drop-icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
+    .drop-zone:hover::before,
+    .drop-zone.drag-over::before { opacity: 1; }
 
-    .drop-zone p {
-      font-size: 0.88rem;
-      color: var(--mid);
-      line-height: 1.5;
-    }
+    .drop-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; position: relative; }
 
-    .drop-zone strong {
-      color: var(--accent);
-      cursor: pointer;
-    }
+    .drop-zone p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; position: relative; }
+
+    .drop-zone strong { color: var(--accent); cursor: pointer; font-weight: 500; }
 
     input[type="file"] { display: none; }
 
     .file-list {
       list-style: none;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.4rem;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.45rem;
     }
 
     .file-item {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      background: var(--cream);
+      background: var(--surface2);
       border: 1px solid var(--border);
-      border-radius: 7px;
-      padding: 0.55rem 0.8rem;
-      font-size: 0.85rem;
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.83rem;
       animation: pop 0.2s ease both;
     }
 
     @keyframes pop {
-      from { opacity: 0; transform: scale(0.95); }
-      to   { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: scale(0.95) translateY(-4px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
     }
 
-    .file-item .file-icon { font-size: 1rem; flex-shrink: 0; }
-    .file-item .file-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--ink); }
-    .file-item .file-size { color: var(--mid); font-size: 0.78rem; white-space: nowrap; }
+    .file-item .file-icon { font-size: 0.95rem; flex-shrink: 0; }
+    .file-item .file-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
+    .file-item .file-size { color: var(--muted); font-size: 0.76rem; white-space: nowrap; }
     .file-item .remove-btn {
       background: none; border: none; cursor: pointer;
-      color: var(--mid); font-size: 1rem; padding: 0 0.2rem;
-      transition: color 0.15s;
+      color: var(--muted); font-size: 0.9rem; padding: 0 0.2rem;
+      transition: color 0.15s; line-height: 1;
     }
     .file-item .remove-btn:hover { color: var(--error); }
 
     .submit-btn {
       width: 100%;
-      padding: 0.9rem 1.5rem;
-      background: var(--ink);
+      padding: 0.85rem 1.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
       color: #fff;
       border: none;
-      border-radius: 8px;
-      font-family: 'DM Sans', sans-serif;
+      border-radius: 10px;
+      font-family: 'Syne', sans-serif;
       font-size: 0.95rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
+      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
+      letter-spacing: 0.01em;
+      box-shadow: 0 4px 20px rgba(79,125,255,0.3);
     }
 
-    .submit-btn:hover:not(:disabled) { background: #2d2b27; transform: translateY(-1px); }
-    .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
-
-    .progress-wrap {
-      margin-top: 1.25rem;
-      display: none;
+    .submit-btn:hover:not(:disabled) {
+      opacity: 0.92;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(79,125,255,0.4);
     }
+
+    .submit-btn:active:not(:disabled) { transform: translateY(0); }
+    .submit-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .progress-wrap { margin-top: 1.1rem; display: none; }
 
     .progress-label {
-      font-size: 0.8rem;
-      color: var(--mid);
-      margin-bottom: 0.4rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
       display: flex;
       justify-content: space-between;
     }
 
-    .progress-bar {
-      height: 5px;
-      background: var(--border);
-      border-radius: 99px;
-      overflow: hidden;
-    }
+    .progress-bar { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
 
     .progress-fill {
       height: 100%;
-      background: var(--accent);
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
       border-radius: 99px;
       width: 0%;
       transition: width 0.3s ease;
+      box-shadow: 0 0 8px rgba(79,125,255,0.5);
     }
 
     .toast {
       display: none;
-      margin-top: 1.25rem;
-      padding: 0.9rem 1.1rem;
-      border-radius: 8px;
-      font-size: 0.88rem;
+      margin-top: 1.1rem;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      font-size: 0.86rem;
       font-weight: 500;
       animation: rise 0.3s ease both;
     }
 
-    .toast.success { background: #edf7f2; color: var(--success); border: 1px solid #b7dfc9; }
-    .toast.error   { background: #fdf0ef; color: var(--error);   border: 1px solid #f1c0bb; }
+    .toast.success { background: rgba(34,201,122,0.1); color: var(--success); border: 1px solid rgba(34,201,122,0.2); }
+    .toast.error   { background: rgba(255,92,106,0.1); color: var(--error);   border: 1px solid rgba(255,92,106,0.2); }
 
-    .divider {
-      height: 1px;
-      background: var(--border);
-      margin: 1.75rem 0;
-    }
+    .divider { height: 1px; background: var(--border); margin: 1.75rem 0 1.25rem; }
 
     .footer-note {
-      font-size: 0.78rem;
-      color: var(--mid);
+      font-size: 0.76rem;
+      color: #3a4060;
       text-align: center;
-      font-weight: 300;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
     }
 
+    .footer-note::before { content: '🔒'; font-size: 0.7rem; }
+
     .spinner {
-      width: 16px; height: 16px;
-      border: 2px solid rgba(255,255,255,0.4);
+      width: 15px; height: 15px;
+      border: 2px solid rgba(255,255,255,0.3);
       border-top-color: #fff;
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
@@ -288,10 +343,10 @@
 <body>
 
 <div class="card">
-  <div class="logo-area">
-    <div class="logo-dot"></div>
-    <h1>Send us your <em>files</em></h1>
-    <p class="subtitle">Fill in your details and drop your files below — we'll take it from there.</p>
+  <div class="header">
+    <div class="badge">Secure Upload</div>
+    <h1>Send us your <span>files</span></h1>
+    <p class="subtitle">Enter your details and drop your files — we'll handle the rest.</p>
   </div>
 
   <div class="field">
@@ -309,7 +364,7 @@
     <div class="drop-zone" id="dropZone">
       <span class="drop-icon">📂</span>
       <p>Drag & drop files here, or <strong id="browseLink">browse</strong></p>
-      <p style="margin-top:0.3rem; font-size:0.8rem;">Any file type accepted</p>
+      <p style="margin-top:0.3rem; font-size:0.78rem;">Any file type accepted</p>
     </div>
     <input type="file" id="fileInput" multiple />
     <ul class="file-list" id="fileList"></ul>
@@ -339,7 +394,6 @@
 
   let selectedFiles = [];
 
-  // Drag & drop
   const dropZone = document.getElementById('dropZone');
   const fileInput = document.getElementById('fileInput');
 
@@ -430,7 +484,7 @@
     if (!name)  return showToast('Please enter your name.', 'error');
     if (!email || !email.includes('@')) return showToast('Please enter a valid email.', 'error');
     if (selectedFiles.length === 0) return showToast('Please add at least one file.', 'error');
-    if (SCRIPT_URL === 'https://script.google.com/macros/s/AKfycbx4AwYpBFSrYzxEwL86wOaA7tNj3xIVnkal6A4KfBhQepdAHHJh7qAARTGhOJA54QI/exec') return showToast('⚠️ Script URL not configured yet.', 'error');
+    if (SCRIPT_URL === 'YOUR_SCRIPT_URL') return showToast('⚠️ Script URL not configured yet.', 'error');
 
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
