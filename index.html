@@ -7,379 +7,150 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --bg:       #0d0f12;
-      --surface:  #141720;
-      --surface2: #1c2030;
-      --border:   #252a3a;
-      --border2:  #2e3550;
-      --text:     #e8eaf0;
-      --muted:    #6b7494;
-      --accent:   #4f7dff;
-      --accent2:  #7b5fff;
-      --success:  #22c97a;
-      --error:    #ff5c6a;
-      --warn:     #f5a623;
+      --bg:#0d0f12; --surface:#141720; --surface2:#1c2030;
+      --border:#252a3a; --border2:#2e3550; --text:#e8eaf0;
+      --muted:#6b7494; --accent:#4f7dff; --accent2:#7b5fff;
+      --success:#22c97a; --error:#ff5c6a; --warn:#f5a623;
     }
-
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-      position: relative;
-      overflow-x: hidden;
+      font-family:'Inter',sans-serif; background:var(--bg); color:var(--text);
+      min-height:100vh; display:flex; align-items:center; justify-content:center;
+      padding:2rem 1rem; position:relative; overflow-x:hidden;
     }
-
     body::before {
-      content: '';
-      position: fixed;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(79,125,255,0.08) 0%, transparent 70%);
-      top: -100px; right: -100px;
-      pointer-events: none;
-      border-radius: 50%;
+      content:''; position:fixed; width:600px; height:600px;
+      background:radial-gradient(circle,rgba(79,125,255,0.08) 0%,transparent 70%);
+      top:-100px; right:-100px; pointer-events:none; border-radius:50%;
     }
-
     body::after {
-      content: '';
-      position: fixed;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(123,95,255,0.06) 0%, transparent 70%);
-      bottom: -50px; left: -50px;
-      pointer-events: none;
-      border-radius: 50%;
+      content:''; position:fixed; width:400px; height:400px;
+      background:radial-gradient(circle,rgba(123,95,255,0.06) 0%,transparent 70%);
+      bottom:-50px; left:-50px; pointer-events:none; border-radius:50%;
     }
-
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      width: 100%;
-      max-width: 500px;
-      padding: 2.75rem 2.75rem 2.25rem;
-      position: relative;
-      animation: rise 0.5s cubic-bezier(.22,.68,0,1.2) both;
-      box-shadow:
-        0 0 0 1px rgba(79,125,255,0.05),
-        0 24px 48px rgba(0,0,0,0.4),
-        0 8px 16px rgba(0,0,0,0.3);
+      background:var(--surface); border:1px solid var(--border); border-radius:20px;
+      width:100%; max-width:500px; padding:2.75rem 2.75rem 2.25rem; position:relative;
+      animation:rise 0.5s cubic-bezier(.22,.68,0,1.2) both;
+      box-shadow:0 0 0 1px rgba(79,125,255,0.05),0 24px 48px rgba(0,0,0,0.4),0 8px 16px rgba(0,0,0,0.3);
     }
-
     .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 10%; right: 10%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(79,125,255,0.4), rgba(123,95,255,0.4), transparent);
-      border-radius: 99px;
+      content:''; position:absolute; top:0; left:10%; right:10%; height:1px;
+      background:linear-gradient(90deg,transparent,rgba(79,125,255,0.4),rgba(123,95,255,0.4),transparent);
+      border-radius:99px;
     }
-
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .header { margin-bottom: 2rem; }
-
+    @keyframes rise { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+    .header { margin-bottom:2rem; }
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(79,125,255,0.1);
-      border: 1px solid rgba(79,125,255,0.2);
-      border-radius: 99px;
-      padding: 4px 12px;
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 1.1rem;
+      display:inline-flex; align-items:center; gap:6px;
+      background:rgba(79,125,255,0.1); border:1px solid rgba(79,125,255,0.2);
+      border-radius:99px; padding:4px 12px; font-size:0.72rem; font-weight:500;
+      color:var(--accent); letter-spacing:0.05em; text-transform:uppercase; margin-bottom:1.1rem;
     }
-
     .badge::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 6px var(--accent);
-      animation: pulse 2s ease-in-out infinite;
+      content:''; width:6px; height:6px; background:var(--accent); border-radius:50%;
+      box-shadow:0 0 6px var(--accent); animation:pulse 2s ease-in-out infinite;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
-    }
-
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
     h1 {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.85rem;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      color: var(--text);
-      margin-bottom: 0.4rem;
+      font-family:'Syne',sans-serif; font-size:1.85rem; font-weight:700;
+      line-height:1.15; letter-spacing:-0.03em; color:var(--text); margin-bottom:0.4rem;
     }
-
     h1 span {
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
     }
-
-    .subtitle {
-      font-size: 0.88rem;
-      color: var(--muted);
-      font-weight: 300;
-      line-height: 1.6;
-    }
-
-    .field { margin-bottom: 1.1rem; }
-
+    .subtitle { font-size:0.88rem; color:var(--muted); font-weight:300; line-height:1.6; }
+    .field { margin-bottom:1.1rem; }
     label {
-      display: block;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.4rem;
+      display:block; font-size:0.72rem; font-weight:500; letter-spacing:0.07em;
+      text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem;
     }
-
-    input[type="text"],
-    input[type="email"] {
-      width: 100%;
-      padding: 0.7rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.92rem;
-      color: var(--text);
-      background: var(--surface2);
-      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-      outline: none;
+    input[type="text"], input[type="email"] {
+      width:100%; padding:0.7rem 1rem; border:1.5px solid var(--border); border-radius:10px;
+      font-family:'Inter',sans-serif; font-size:0.92rem; color:var(--text);
+      background:var(--surface2); transition:border-color 0.2s,box-shadow 0.2s,background 0.2s; outline:none;
     }
-
-    input[type="text"]:focus,
-    input[type="email"]:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(79,125,255,0.12);
-      background: #1e2438;
+    input[type="text"]:focus, input[type="email"]:focus {
+      border-color:var(--accent); box-shadow:0 0 0 3px rgba(79,125,255,0.12); background:#1e2438;
     }
-
-    input[type="text"]::placeholder,
-    input[type="email"]::placeholder { color: #3a4060; }
-
+    input[type="text"]::placeholder, input[type="email"]::placeholder { color:#3a4060; }
     .drop-zone {
-      border: 1.5px dashed var(--border2);
-      border-radius: 12px;
-      padding: 1.75rem 1.5rem;
-      text-align: center;
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
-      background: var(--surface2);
-      margin-bottom: 1rem;
-      position: relative;
-      overflow: hidden;
+      border:1.5px dashed var(--border2); border-radius:12px; padding:1.75rem 1.5rem;
+      text-align:center; cursor:pointer; transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;
+      background:var(--surface2); margin-bottom:1rem; position:relative; overflow:hidden;
     }
-
     .drop-zone::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(79,125,255,0.05), transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 50% 0%,rgba(79,125,255,0.05),transparent 60%);
+      opacity:0; transition:opacity 0.3s;
     }
-
-    .drop-zone:hover,
-    .drop-zone.drag-over {
-      border-color: var(--accent);
-      background: #181e2e;
-      box-shadow: 0 0 20px rgba(79,125,255,0.08);
+    .drop-zone:hover, .drop-zone.drag-over {
+      border-color:var(--accent); background:#181e2e; box-shadow:0 0 20px rgba(79,125,255,0.08);
     }
-
-    .drop-zone:hover::before,
-    .drop-zone.drag-over::before { opacity: 1; }
-
-    .drop-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; position: relative; }
-
-    .drop-zone p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; position: relative; }
-
-    .drop-zone strong { color: var(--accent); cursor: pointer; font-weight: 500; }
-
-    input[type="file"] { display: none; }
-
-    .file-list {
-      list-style: none;
-      margin-bottom: 1.4rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-    }
-
+    .drop-zone:hover::before, .drop-zone.drag-over::before { opacity:1; }
+    .drop-icon { font-size:1.8rem; margin-bottom:0.5rem; display:block; position:relative; }
+    .drop-zone p { font-size:0.85rem; color:var(--muted); line-height:1.5; position:relative; }
+    .drop-zone strong { color:var(--accent); cursor:pointer; font-weight:500; }
+    input[type="file"] { display:none; }
+    .file-list { list-style:none; margin-bottom:1.4rem; display:flex; flex-direction:column; gap:0.45rem; }
     .file-item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.5rem 0.75rem;
-      font-size: 0.83rem;
-      animation: pop 0.2s ease both;
+      background:var(--surface2); border:1px solid var(--border);
+      border-radius:8px; padding:0.5rem 0.75rem; font-size:0.83rem; animation:pop 0.2s ease both;
     }
-
-    .file-item.large-file {
-      border-color: rgba(245,166,35,0.3);
-      background: rgba(245,166,35,0.05);
+    .file-item.large-file { border-color:rgba(245,166,35,0.3); background:rgba(245,166,35,0.04); }
+    @keyframes pop { from{opacity:0;transform:scale(0.95) translateY(-4px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    .file-item-row { display:flex; align-items:center; gap:0.6rem; width:100%; }
+    .file-icon { font-size:0.95rem; flex-shrink:0; }
+    .file-name { flex:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:var(--text); }
+    .file-size { color:var(--muted); font-size:0.76rem; white-space:nowrap; }
+    .file-size.warn { color:var(--warn); }
+    .remove-btn {
+      background:none; border:none; cursor:pointer; color:var(--muted);
+      font-size:0.9rem; padding:0 0.2rem; transition:color 0.15s; line-height:1;
     }
-
-    .file-item .chunk-progress {
-      width: 100%;
-      height: 3px;
-      background: var(--border);
-      border-radius: 99px;
-      margin-top: 4px;
-      overflow: hidden;
-      display: none;
+    .remove-btn:hover { color:var(--error); }
+    .chunk-bar { height:3px; background:var(--border); border-radius:99px; margin-top:5px; overflow:hidden; display:none; }
+    .chunk-fill {
+      height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2));
+      border-radius:99px; width:0%; transition:width 0.2s ease;
     }
-
-    .file-item .chunk-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 99px;
-      width: 0%;
-      transition: width 0.2s ease;
-    }
-
-    .file-item-inner {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      width: 100%;
-    }
-
-    .file-item-wrap {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    @keyframes pop {
-      from { opacity: 0; transform: scale(0.95) translateY(-4px); }
-      to   { opacity: 1; transform: scale(1) translateY(0); }
-    }
-
-    .file-item .file-icon { font-size: 0.95rem; flex-shrink: 0; }
-    .file-item .file-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); }
-    .file-item .file-size { color: var(--muted); font-size: 0.76rem; white-space: nowrap; }
-    .file-item .file-size.warn { color: var(--warn); }
-    .file-item .remove-btn {
-      background: none; border: none; cursor: pointer;
-      color: var(--muted); font-size: 0.9rem; padding: 0 0.2rem;
-      transition: color 0.15s; line-height: 1;
-    }
-    .file-item .remove-btn:hover { color: var(--error); }
-
     .submit-btn {
-      width: 100%;
-      padding: 0.85rem 1.5rem;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-family: 'Syne', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      letter-spacing: 0.01em;
-      box-shadow: 0 4px 20px rgba(79,125,255,0.3);
+      width:100%; padding:0.85rem 1.5rem;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      color:#fff; border:none; border-radius:10px; font-family:'Syne',sans-serif;
+      font-size:0.95rem; font-weight:600; cursor:pointer;
+      transition:opacity 0.2s,transform 0.15s,box-shadow 0.2s;
+      display:flex; align-items:center; justify-content:center; gap:0.5rem;
+      letter-spacing:0.01em; box-shadow:0 4px 20px rgba(79,125,255,0.3);
     }
-
-    .submit-btn:hover:not(:disabled) {
-      opacity: 0.92;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 28px rgba(79,125,255,0.4);
-    }
-
-    .submit-btn:active:not(:disabled) { transform: translateY(0); }
-    .submit-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
-
-    .progress-wrap { margin-top: 1.1rem; display: none; }
-
-    .progress-label {
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .progress-bar { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
-
+    .submit-btn:hover:not(:disabled) { opacity:0.92; transform:translateY(-1px); box-shadow:0 6px 28px rgba(79,125,255,0.4); }
+    .submit-btn:active:not(:disabled) { transform:translateY(0); }
+    .submit-btn:disabled { opacity:0.45; cursor:not-allowed; transform:none; box-shadow:none; }
+    .progress-wrap { margin-top:1.1rem; display:none; }
+    .progress-label { font-size:0.78rem; color:var(--muted); margin-bottom:0.5rem; display:flex; justify-content:space-between; }
+    .progress-bar { height:4px; background:var(--border); border-radius:99px; overflow:hidden; }
     .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      border-radius: 99px;
-      width: 0%;
-      transition: width 0.3s ease;
-      box-shadow: 0 0 8px rgba(79,125,255,0.5);
+      height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2));
+      border-radius:99px; width:0%; transition:width 0.3s ease; box-shadow:0 0 8px rgba(79,125,255,0.5);
     }
-
-    .toast {
-      display: none;
-      margin-top: 1.1rem;
-      padding: 0.85rem 1rem;
-      border-radius: 10px;
-      font-size: 0.86rem;
-      font-weight: 500;
-      animation: rise 0.3s ease both;
-    }
-
-    .toast.success { background: rgba(34,201,122,0.1); color: var(--success); border: 1px solid rgba(34,201,122,0.2); }
-    .toast.error   { background: rgba(255,92,106,0.1); color: var(--error);   border: 1px solid rgba(255,92,106,0.2); }
-
-    .divider { height: 1px; background: var(--border); margin: 1.75rem 0 1.25rem; }
-
+    .toast { display:none; margin-top:1.1rem; padding:0.85rem 1rem; border-radius:10px; font-size:0.86rem; font-weight:500; animation:rise 0.3s ease both; }
+    .toast.success { background:rgba(34,201,122,0.1); color:var(--success); border:1px solid rgba(34,201,122,0.2); }
+    .toast.error   { background:rgba(255,92,106,0.1); color:var(--error);   border:1px solid rgba(255,92,106,0.2); }
+    .divider { height:1px; background:var(--border); margin:1.75rem 0 1.25rem; }
     .footer-note {
-      font-size: 0.76rem;
-      color: #3a4060;
-      text-align: center;
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4rem;
+      font-size:0.76rem; color:#3a4060; text-align:center; font-weight:400;
+      display:flex; align-items:center; justify-content:center; gap:0.4rem;
     }
-
-    .footer-note::before { content: '🔒'; font-size: 0.7rem; }
-
+    .footer-note::before { content:'🔒'; font-size:0.7rem; }
     .spinner {
-      width: 15px; height: 15px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-top-color: #fff;
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
+      width:15px; height:15px; border:2px solid rgba(255,255,255,0.3);
+      border-top-color:#fff; border-radius:50%; animation:spin 0.6s linear infinite;
     }
-
-    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes spin { to{transform:rotate(360deg)} }
   </style>
 </head>
 <body>
-
 <div class="card">
   <div class="header">
     <div class="badge">Secure Upload</div>
@@ -389,12 +160,11 @@
 
   <div class="field">
     <label for="name">Your Name</label>
-    <input type="text" id="name" placeholder="Jane Smith" autocomplete="name" />
+    <input type="text" id="name" placeholder="Jane Smith" autocomplete="name"/>
   </div>
-
   <div class="field">
     <label for="email">Email Address</label>
-    <input type="email" id="email" placeholder="jane@example.com" autocomplete="email" />
+    <input type="email" id="email" placeholder="jane@example.com" autocomplete="email"/>
   </div>
 
   <div class="field">
@@ -402,15 +172,13 @@
     <div class="drop-zone" id="dropZone">
       <span class="drop-icon">📂</span>
       <p>Drag & drop files here, or <strong id="browseLink">browse</strong></p>
-      <p style="margin-top:0.3rem; font-size:0.78rem;">Any file type · Large files supported</p>
+      <p style="margin-top:0.3rem;font-size:0.78rem;">Any file type · Large files supported</p>
     </div>
-    <input type="file" id="fileInput" multiple />
+    <input type="file" id="fileInput" multiple/>
     <ul class="file-list" id="fileList"></ul>
   </div>
 
-  <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
-    Upload Files
-  </button>
+  <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">Upload Files</button>
 
   <div class="progress-wrap" id="progressWrap">
     <div class="progress-label">
@@ -421,174 +189,146 @@
   </div>
 
   <div class="toast" id="toast"></div>
-
   <div class="divider"></div>
   <p class="footer-note">Your files are uploaded securely and privately.</p>
 </div>
 
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4AwYpBFSrYzxEwL86wOaA7tNj3xIVnkal6A4KfBhQepdAHHJh7qAARTGhOJA54QI/exec";
-
-  // Chunk size: 3MB in base64 = ~4MB raw — safe under Apps Script's limits
-  const CHUNK_SIZE = 3 * 1024 * 1024;
-  const LARGE_FILE_THRESHOLD = 10 * 1024 * 1024; // warn at 10MB
+  const CHUNK_SIZE = 3 * 1024 * 1024; // 3MB per chunk
+  const LARGE_FILE_THRESHOLD = 10 * 1024 * 1024;
 
   let selectedFiles = [];
 
-  const dropZone = document.getElementById('dropZone');
-  const fileInput = document.getElementById('fileInput');
+  // One session ID shared across ALL files in a single upload click
+  function makeId() {
+    return Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  }
+
+  const dropZone   = document.getElementById('dropZone');
+  const fileInput  = document.getElementById('fileInput');
 
   document.getElementById('browseLink').onclick = () => fileInput.click();
-  dropZone.onclick = (e) => { if (e.target.id !== 'browseLink') fileInput.click(); };
-
-  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+  dropZone.onclick = e => { if (e.target.id !== 'browseLink') fileInput.click(); };
+  dropZone.addEventListener('dragover',  e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
   dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
   dropZone.addEventListener('drop', e => {
-    e.preventDefault();
-    dropZone.classList.remove('drag-over');
+    e.preventDefault(); dropZone.classList.remove('drag-over');
     addFiles([...e.dataTransfer.files]);
   });
-
-  fileInput.addEventListener('change', () => {
-    addFiles([...fileInput.files]);
-    fileInput.value = '';
-  });
+  fileInput.addEventListener('change', () => { addFiles([...fileInput.files]); fileInput.value = ''; });
 
   function addFiles(newFiles) {
     newFiles.forEach(f => {
-      if (!selectedFiles.find(x => x.name === f.name && x.size === f.size)) {
-        selectedFiles.push(f);
-      }
+      if (!selectedFiles.find(x => x.name === f.name && x.size === f.size)) selectedFiles.push(f);
     });
     renderFileList();
   }
 
-  function removeFile(index) {
-    selectedFiles.splice(index, 1);
-    renderFileList();
-  }
+  function removeFile(i) { selectedFiles.splice(i, 1); renderFileList(); }
 
   function renderFileList() {
     const list = document.getElementById('fileList');
     list.innerHTML = '';
     selectedFiles.forEach((f, i) => {
-      const isLarge = f.size > LARGE_FILE_THRESHOLD;
+      const large = f.size > LARGE_FILE_THRESHOLD;
       const li = document.createElement('li');
-      li.className = `file-item${isLarge ? ' large-file' : ''}`;
-      li.id = `file-item-${i}`;
+      li.className = 'file-item' + (large ? ' large-file' : '');
+      li.id = 'fi-' + i;
       li.innerHTML = `
-        <div class="file-item-inner">
-          <span class="file-icon">${getFileIcon(f.name)}</span>
-          <div class="file-item-wrap">
-            <span class="file-name">${f.name}</span>
-            <div class="chunk-progress" id="chunk-bar-${i}">
-              <div class="chunk-fill" id="chunk-fill-${i}"></div>
-            </div>
-          </div>
-          <span class="file-size${isLarge ? ' warn' : ''}">${formatSize(f.size)}${isLarge ? ' ⚠' : ''}</span>
+        <div class="file-item-row">
+          <span class="file-icon">${icon(f.name)}</span>
+          <span class="file-name">${f.name}</span>
+          <span class="file-size${large?' warn':''}">${fmtSize(f.size)}${large?' ⚠':''}</span>
           <button class="remove-btn" onclick="removeFile(${i})" title="Remove">✕</button>
         </div>
-      `;
+        <div class="chunk-bar" id="cb-${i}"><div class="chunk-fill" id="cf-${i}"></div></div>`;
       list.appendChild(li);
     });
   }
 
-  function getFileIcon(name) {
-    const ext = name.split('.').pop().toLowerCase();
-    if (['jpg','jpeg','png','gif','webp','svg'].includes(ext)) return '🖼️';
-    if (['ai','eps','psd','psb'].includes(ext)) return '🎨';
-    if (['pdf'].includes(ext)) return '📄';
-    if (['doc','docx'].includes(ext)) return '📝';
-    if (['xls','xlsx','csv'].includes(ext)) return '📊';
-    if (['zip','rar','7z'].includes(ext)) return '🗜️';
-    if (['mp4','mov','avi'].includes(ext)) return '🎬';
-    if (['mp3','wav','aac'].includes(ext)) return '🎵';
+  function icon(name) {
+    const e = name.split('.').pop().toLowerCase();
+    if (['jpg','jpeg','png','gif','webp','svg'].includes(e)) return '🖼️';
+    if (['ai','eps','psd','psb'].includes(e)) return '🎨';
+    if (e==='pdf') return '📄';
+    if (['doc','docx'].includes(e)) return '📝';
+    if (['xls','xlsx','csv'].includes(e)) return '📊';
+    if (['zip','rar','7z'].includes(e)) return '🗜️';
+    if (['mp4','mov','avi'].includes(e)) return '🎬';
     return '📎';
   }
 
-  function formatSize(bytes) {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB';
-    if (bytes < 1073741824) return (bytes/1048576).toFixed(1) + ' MB';
-    return (bytes/1073741824).toFixed(1) + ' GB';
+  function fmtSize(b) {
+    if (b < 1024) return b + ' B';
+    if (b < 1048576) return (b/1024).toFixed(1) + ' KB';
+    if (b < 1073741824) return (b/1048576).toFixed(1) + ' MB';
+    return (b/1073741824).toFixed(1) + ' GB';
   }
 
   function showToast(msg, type) {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.className = `toast ${type}`;
-    t.style.display = 'block';
+    t.textContent = msg; t.className = 'toast ' + type; t.style.display = 'block';
   }
 
-  // Read a specific byte slice of a file as base64
   function readChunk(file, start, end) {
     return new Promise((res, rej) => {
-      const slice = file.slice(start, end);
-      const reader = new FileReader();
-      reader.onload = () => res(reader.result.split(',')[1]);
-      reader.onerror = rej;
-      reader.readAsDataURL(slice);
+      const r = new FileReader();
+      r.onload  = () => res(r.result.split(',')[1]);
+      r.onerror = rej;
+      r.readAsDataURL(file.slice(start, end));
     });
   }
 
-  // Upload a single file using chunked base64 transfer
-  async function uploadFile(file, name, email, fileIndex) {
+  async function uploadFile(file, fileIndex, sessionId, totalFiles, name, email) {
     const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
-    const fileId = `${Date.now()}-${Math.random().toString(36).slice(2,8)}`;
+    const fileId = makeId();
 
-    // Show per-file progress bar
-    const bar = document.getElementById(`chunk-bar-${fileIndex}`);
-    const fill = document.getElementById(`chunk-fill-${fileIndex}`);
+    const bar  = document.getElementById('cb-' + fileIndex);
+    const fill = document.getElementById('cf-' + fileIndex);
     if (bar) bar.style.display = 'block';
 
     for (let i = 0; i < totalChunks; i++) {
       const start = i * CHUNK_SIZE;
-      const end = Math.min(start + CHUNK_SIZE, file.size);
-      const chunkData = await readChunk(file, start, end);
+      const chunkData = await readChunk(file, start, Math.min(start + CHUNK_SIZE, file.size));
 
       const payload = new URLSearchParams({
-        action: 'chunk',
-        name,
-        email,
-        fileName: file.name,
-        mimeType: file.type || 'application/octet-stream',
-        fileId,
-        chunkIndex: i,
+        name, email,
+        fileName:    file.name,
+        mimeType:    file.type || 'application/octet-stream',
+        sessionId,          // ← shared across all files
+        fileId,             // ← unique to this file
+        chunkIndex:  i,
         totalChunks,
-        chunkData
+        totalFiles          // ← so backend knows when session is complete
       });
+      payload.append('chunkData', chunkData);
 
-      let attempts = 0;
-      let success = false;
-      while (attempts < 3 && !success) {
+      let attempts = 0, ok = false;
+      while (attempts < 3 && !ok) {
         try {
-          const res = await fetch(SCRIPT_URL, {
+          const res  = await fetch(SCRIPT_URL, {
             method: 'POST',
             body: payload,
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
           });
           const json = await res.json();
-          if (json.success) {
-            success = true;
-          } else {
-            throw new Error(json.error || 'Chunk failed');
-          }
-        } catch (err) {
+          if (json.success) ok = true;
+          else throw new Error(json.error || 'Chunk rejected');
+        } catch(err) {
           attempts++;
-          if (attempts >= 3) throw new Error(`Failed on chunk ${i+1} of ${totalChunks}: ${err.message}`);
-          await new Promise(r => setTimeout(r, 1000 * attempts)); // backoff
+          if (attempts >= 3) throw new Error(`Chunk ${i+1}/${totalChunks} failed: ${err.message}`);
+          await new Promise(r => setTimeout(r, 1000 * attempts));
         }
       }
 
-      // Update per-file chunk progress
-      if (fill) fill.style.width = `${Math.round(((i+1) / totalChunks) * 100)}%`;
+      if (fill) fill.style.width = Math.round(((i+1)/totalChunks)*100) + '%';
     }
   }
 
   async function handleSubmit() {
     const name  = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
-
     if (!name)  return showToast('Please enter your name.', 'error');
     if (!email || !email.includes('@')) return showToast('Please enter a valid email.', 'error');
     if (selectedFiles.length === 0) return showToast('Please add at least one file.', 'error');
@@ -597,50 +337,51 @@
     btn.disabled = true;
     btn.innerHTML = '<div class="spinner"></div> Uploading...';
 
-    const progressWrap = document.getElementById('progressWrap');
-    const progressFill = document.getElementById('progressFill');
-    const progressText = document.getElementById('progressText');
+    const progressWrap  = document.getElementById('progressWrap');
+    const progressFill  = document.getElementById('progressFill');
+    const progressText  = document.getElementById('progressText');
     const progressCount = document.getElementById('progressCount');
     progressWrap.style.display = 'block';
     document.getElementById('toast').style.display = 'none';
 
-    let succeeded = 0;
-    let failed = 0;
+    // One session ID for ALL files in this upload
+    const sessionId = makeId();
+    const totalFiles = selectedFiles.length;
+
+    let succeeded = 0, failed = 0;
 
     for (let i = 0; i < selectedFiles.length; i++) {
       const file = selectedFiles[i];
-      progressText.textContent = `Uploading "${file.name}"…`;
-      progressCount.textContent = `${i+1} / ${selectedFiles.length}`;
-      progressFill.style.width = `${Math.round((i / selectedFiles.length) * 100)}%`;
+      progressText.textContent  = `Uploading "${file.name}"…`;
+      progressCount.textContent = `${i+1} / ${totalFiles}`;
+      progressFill.style.width  = Math.round((i / totalFiles) * 100) + '%';
 
       try {
-        await uploadFile(file, name, email, i);
+        await uploadFile(file, i, sessionId, totalFiles, name, email);
         succeeded++;
       } catch(err) {
-        console.error('Upload error:', err);
+        console.error(err);
         failed++;
       }
     }
 
     progressFill.style.width = '100%';
-    progressText.textContent = 'Done!';
+    progressText.textContent  = 'Done!';
     progressCount.textContent = '';
-
-    btn.disabled = false;
+    btn.disabled  = false;
     btn.innerHTML = 'Upload Files';
 
     if (failed === 0) {
-      showToast(`✅ ${succeeded} file${succeeded > 1 ? 's' : ''} uploaded successfully! Thank you, ${name}.`, 'success');
+      showToast(`✅ ${succeeded} file${succeeded>1?'s':''} uploaded successfully! Thank you, ${name}.`, 'success');
       selectedFiles = [];
       renderFileList();
-      document.getElementById('name').value = '';
+      document.getElementById('name').value  = '';
       document.getElementById('email').value = '';
-      setTimeout(() => { progressWrap.style.display = 'none'; progressFill.style.width = '0%'; }, 3000);
+      setTimeout(() => { progressWrap.style.display='none'; progressFill.style.width='0%'; }, 3000);
     } else {
       showToast(`⚠️ ${succeeded} uploaded, ${failed} failed. Please try again.`, 'error');
     }
   }
 </script>
-
 </body>
 </html>
